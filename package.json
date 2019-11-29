@@ -1,0 +1,55 @@
+{
+  "name": "flagger",
+  "version": "0.0.0",
+  "description": "Simple feature flags server",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "publish": "semantic-release --no-ci",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3ZsForInsomnia/flagger.git"
+  },
+  "keywords": [
+    "feature-flags"
+  ],
+  "author": "Zachary Levine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3ZsForInsomnia/flagger/issues"
+  },
+  "homepage": "https://github.com/3ZsForInsomnia/flagger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ramda": "^0.26.1",
+    "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/git": "^7.0.18",
+    "@semantic-release/github": "^5.5.5",
+    "@semantic-release/npm": "^5.3.4",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "commitizen": "^4.0.3",
+    "commitlint": "^8.2.0",
+    "cz-customizable": "^6.2.0",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "semantic-release": "^15.13.31",
+    "ts-jest": "^24.2.0"
+  }
+}

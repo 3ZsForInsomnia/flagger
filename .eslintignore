@@ -1,0 +1,5 @@
+node_modules/
+release.config.js
+.lintstagedrc.js
+dist/
+jest.config.js
