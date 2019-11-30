@@ -1,4 +1,4 @@
-const runNpmLock = 'npm install --frozen-lockfile';
+const runNpmLock = 'npm install --from-lock-file';
 
 module.exports = {
   hooks: {
