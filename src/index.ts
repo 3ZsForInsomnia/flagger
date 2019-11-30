@@ -2,11 +2,13 @@ import * as express from 'express';
 import * as r from 'ramda';
 import { Get, Set } from './routes';
 import { createLogger } from './logger';
+import { connectToDB } from './connectToDb';
 const app = express();
 const port = 3030;
 
 app.use(express.json());
 createLogger();
+connectToDB();
 
 r.forEachObjIndexed(val => {
   app.get(val.route, val.handler);

@@ -1,75 +1,62 @@
+import { Store, StoreInterface } from './connectToDb';
+import { forEachObjIndexed } from 'ramda';
+
 export type DataStoreType = 'boolean' | 'jsonConfig' | 'cssConfig';
 
 class FlaggerTypeError extends Error {
   constructor(keyWithWrongType: string, valueAttempted: any, typeExpected: DataStoreType) {
     super();
-    this.message = `Flagger Type Error: Flagger received "${valueAttempted}",
+    this.message = `Flagger Type Error: Flagger received "${keyWithWrongType}",
       which is a ${typeof valueAttempted}, but was expecting a ${typeExpected}`;
   }
 }
 
-type DataStore = {
-  [storeName: string]: {
-    type: DataStoreType;
-    store: {
-      [key: string]: any;
-    };
-  };
-};
-
-const dataStore: DataStore = {};
-
-export const createConfig = (config: string, type: DataStoreType = 'boolean') => {
-  dataStore[config] = {
-    type,
-    store: {}
-  };
-};
-
-export const getConfigValue = (config: string, key: string) =>
-  dataStore[config] ? dataStore[config].store[key] : null;
-
-export const getConfig = (config: string) => (dataStore[config] ? dataStore[config].store : null);
-
-export const getConfigType = (config: string) =>
-  dataStore[config] ? dataStore[config].type : null;
-
-export const addConfigValue = (config: string, key: string, value: any) => {
-  if (
-    dataStore[config] &&
-    (dataStore[config].type === 'boolean' ? typeof value === 'boolean' : false)
-  ) {
-    dataStore[config].store[key] = value;
-    return { [key]: value };
+const logging = (err, config: StoreInterface) => {
+  if (err) {
+    console.error('An error was returned from the database: ', err);
   } else {
-    return null;
+    console.log('Returning config :', config);
   }
 };
 
-export const addConfigValues = (config: string, values: object) => {
-  if (dataStore[config].type === 'boolean') {
-    const keys = Object.keys(values);
-    const keyWithWrongType = keys.find(key => typeof values[key] !== 'boolean');
-    if (keyWithWrongType) {
-      throw new FlaggerTypeError(
-        keyWithWrongType,
-        values[keyWithWrongType],
-        dataStore[config].type
-      );
+export const createConfig = (name: string, type: DataStoreType = 'boolean') =>
+  new Store({ name, type, store: {} }).save();
+
+export const getConfigValue = (name: string) => {
+  return Store.findOne({ name }, logging);
+};
+
+export const getByName = (name: string) => Store.findOne({ name }, logging);
+
+export const addConfigValue = (name: string, key: string, value: any) =>
+  Store.findOne({ name }, logging).exec((err, config: StoreInterface) => {
+    return !err && config && config.type === 'boolean' && typeof value === 'boolean'
+      ? Store.updateOne({ name }, { ...config, store: { ...config.store, [key]: value } })
+      : null;
+  });
+
+export const addConfigValues = (name: string, values: object) => {
+  return Store.findOne({ name }, logging).exec((err, config: StoreInterface) => {
+    if (config.type === 'boolean') {
+      const keyWithWrongType = Object.keys(values).find(key => typeof values[key] !== 'boolean');
+      if (keyWithWrongType) {
+        throw new FlaggerTypeError(keyWithWrongType, values[keyWithWrongType], config.type);
+      }
     }
-  }
-  dataStore[config].store = {
-    ...dataStore[config].store,
-    ...values
-  };
-  return dataStore[config];
+    if (!err && config) {
+      forEachObjIndexed((value, key) => {
+        config.store.set(key, values[key]);
+      }, values);
+      logging(err, config);
+      config.save();
+    }
+  });
 };
 
 export default {
   createConfig,
   addConfigValue,
   addConfigValues,
-  getConfig,
-  getConfigType,
+  getByName,
   getConfigValue
 };
