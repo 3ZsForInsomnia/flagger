@@ -1,8 +1,8 @@
 module.exports = {
   branch: 'master',
   tagFormat: 'v${version}',
-  prepare: ['@semantic-release/changelog', '@semantic-release/git'],
-  verifyConditions: ['@semantic-release/git'],
+  prepare: ['@semantic-release/changelog', '@semantic-release/npm', '@semantic-release/git'],
+  verifyConditions: ['@semantic-release/npm', '@semantic-release/git'],
   plugins: [
     [
       '@semantic-release/commit-analyzer',
@@ -40,6 +40,7 @@ module.exports = {
           { path: 'dist/asset.min.js', label: 'JS distribution' }
         ]
       }
-    ]
+    ],
+    '@semantic-release/npm'
   ]
 };
