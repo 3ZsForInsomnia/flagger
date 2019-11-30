@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/3ZsForInsomnia/flagger/compare/v1.2.0...v2.0.0) (2019-11-30)
+
+### Features
+
+- **DB access:** added db access, nodemon, and some qol changes ([ed33861](https://github.com/3ZsForInsomnia/flagger/commit/ed338613f9f88eb26575befb3f303011d2e184bb))
+
+### BREAKING CHANGES
+
+- **DB access:** MongoDB access is now required
+
 # [1.2.0](https://github.com/3ZsForInsomnia/flagger/compare/v1.1.0...v1.2.0) (2019-11-30)
 
 ### Features
