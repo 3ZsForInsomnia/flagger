@@ -1,3 +1,9 @@
+# [1.2.0](https://github.com/3ZsForInsomnia/flagger/compare/v1.1.0...v1.2.0) (2019-11-30)
+
+### Features
+
+- **Config/setup:** renamed package to be scoped ([8e39f6b](https://github.com/3ZsForInsomnia/flagger/commit/8e39f6b604e94bcc5f02808c19a32696a0d66666))
+
 # [1.1.0](https://github.com/3ZsForInsomnia/flagger/compare/v1.0.1...v1.1.0) (2019-11-30)
 
 ### Features
