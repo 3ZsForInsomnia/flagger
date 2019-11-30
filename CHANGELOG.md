@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/3ZsForInsomnia/flagger/compare/v1.0.1...v1.1.0) (2019-11-30)
+
+### Features
+
+- **Config/setup:** npm setup for release ([a7414bf](https://github.com/3ZsForInsomnia/flagger/commit/a7414bfc69bed44f4fcbdd0ce36047b5e2ffa28f))
+
 ## [1.0.1](https://github.com/3ZsForInsomnia/flagger/compare/v1.0.0...v1.0.1) (2019-11-30)
 
 ### Bug Fixes
