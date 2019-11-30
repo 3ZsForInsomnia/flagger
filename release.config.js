@@ -3,7 +3,7 @@ module.exports = {
   tagFormat: 'v${version}',
   prepare: ['@semantic-release/changelog', '@semantic-release/npm', '@semantic-release/git'],
   publish: ['@semantic-release/npm'],
-  verifyConditions: ['@semantic-release/npm', '@semantic-release/git'],
+  verifyConditions: ['@semantic-release/git'],
   plugins: [
     [
       '@semantic-release/commit-analyzer',
