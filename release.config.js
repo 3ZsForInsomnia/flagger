@@ -41,7 +41,6 @@ module.exports = {
           { path: 'dist/asset.min.js', label: 'JS distribution' }
         ]
       }
-    ],
-    '@semantic-release/npm'
+    ]
   ]
 };
