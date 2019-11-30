@@ -1,10 +1,10 @@
-const runYarnLock = 'yarn install --frozen-lockfile';
+const runNpmLock = 'npm install --frozen-lockfile';
 
 module.exports = {
   hooks: {
-    'post-checkout': `if [[ $HUSKY_GIT_PARAMS =~ 1$ ]]; then ${runYarnLock}; fi`,
-    'post-merge': runYarnLock,
-    'post-rebase': 'yarn install',
-    'pre-commit': 'yarn lint-staged'
+    'post-checkout': `if [[ $HUSKY_GIT_PARAMS =~ 1$ ]]; then ${runNpmLock}; fi`,
+    'post-merge': runNpmLock,
+    'post-rebase': 'npm install',
+    'pre-commit': 'npx lint-staged'
   }
 };
