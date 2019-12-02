@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/3ZsForInsomnia/flagger/compare/v2.0.0...v3.0.0) (2019-12-02)
+
+### Features
+
+- **everything:** full rewrite of functionality ([e6ca99c](https://github.com/3ZsForInsomnia/flagger/commit/e6ca99c6111f2d726cbb75ad115e754b35a7060c))
+
+### BREAKING CHANGES
+
+- **everything:** Full rewrite
+
 # [2.0.0](https://github.com/3ZsForInsomnia/flagger/compare/v1.2.0...v2.0.0) (2019-11-30)
 
 ### Features
